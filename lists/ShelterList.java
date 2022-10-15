@@ -1,4 +1,4 @@
-package starter;
+import java.util.LinkedList;
 
 public class ShelterList<T> {
   private Node<T> head;

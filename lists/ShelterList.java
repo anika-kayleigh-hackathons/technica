@@ -5,7 +5,82 @@ public class ShelterList<T> {
   private Node<T> tail;
   private int numElements;
 
-  private static class Node<E> {
+  public ShelterList() {
+    head = null;
+    tail = null;
+    numElements = 0;
+  }
+
+  public Node<T> addLast(T data) {
+    Node<T> node = new Node<>(data);
+    Node<T> temp = head;
+    
+    //empty
+    if(head == null) {
+      head = node;
+      //head.next = null;
+    } else {
+      while (temp.next != null) {
+        temp = temp.next;
+        temp.next = node;
+        node.prev = temp;
+      }
+    }
+    numElements++;
+    return node;
+  }
+  
+  
+  public int length() {
+    return numElements;
+  }
+  
+  // Pre: 0 <= index < length()
+  // Pre: length() != 0
+  public T get(int index) {
+    Node<T> target = tail;
+    
+    if(length() == 0) {
+      return;
+    }
+    
+    while(target != null) {
+      for (int i = numElements - 1; i > index; i--) {
+        target = target.prev;
+      }
+    }
+    
+    return target.data;
+  }
+
+  //edge case done
+  public void delete(Node<T> target) {
+    Node<T> prevNode = target.prev;
+    Node<T> nextNode = target.next;
+    
+    if (head == null || target == null) {
+      // Pre: target != null
+      return;
+    }
+    
+    if (head == target) {
+      head = nextNode;
+    }
+    
+    if (nextNode != null) {
+      nextNode.prev = prevNode;
+    }
+    
+    if (prevNode != null) {
+      prevNode.next = nextNode;
+    }
+    
+    numElements--;
+  }
+  
+  
+
+  public static class Node<E> {
     E data;
     Node<E> next;
     Node<E> prev;
@@ -14,72 +89,4 @@ public class ShelterList<T> {
       this.data = data;
     }
   }
-
-  public DoublyLinkedList() {
-    head = null;
-    tail = null;
-    numElements = 0;
-  }
-  
-  public Node<T> addFirst(T data) {
-    Node<T> node = new Node<>(data);
-    node.next = head;
-    head.prev = node;
-    head = node;
-    numElements++;
-    return node;
-  }
-  
-  public Node<T> addLast(T data) {
-    Node<T> node = new Node<>(data);
-    node.prev = tail;
-    tail.next = node;
-    tail = node;
-    numElements++;
-    return node;
-  }
-  
-  public int length() {
-    return numElements;
-  }
-  
-  public T get(int index) {
-    Node<T> target = tail;
-    for (int i = numElements - 1; i > index; i--) {
-      target = target.prev;
-    }
-    return target.data;
-  }
-  
-  public void delete(Node<T> target) {
-    Node<T> prevNode = target.prev;
-    Node<T> nextNode = target.next;
-
-    prevNode.next = nextNode;
-    nextNode.prev = prevNode;
-    numElements--;
-  }
-
-  public void insertAfter(Node<T> target, T data) {
-    Node<T> nodeToInsert = new Node<>(data);
-    Node<T> nextNode = target.next;
-
-    target.next = nodeToInsert;
-    nodeToInsert.prev = target;
-    nodeToInsert.next = nextNode;
-    nextNode.prev = nodeToInsert;
-    numElements++;
-  }
-  
-  public void insertBefore(Node<T> target, T data) {
-    Node<T> nodeToInsert = new Node<>(data);
-    Node<T> prevNode = target.prev;
-
-    target.prev = nodeToInsert;
-    nodeToInsert.next = target;
-    nodeToInsert.prev = prevNode;
-    prevNode.next = nodeToInsert;
-    numElements++;
-  }
-  
 }

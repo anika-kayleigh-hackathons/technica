@@ -1,4 +1,4 @@
-public class Shelter {
+public class Shelter extends ShelterList<Shelter>{
     private String name;
     private String address;
     private final int maxCapacity;
@@ -39,5 +39,8 @@ public class Shelter {
     public void setLocation(int lat, int lon) {
         this.location = new Location(lat, lon);
     }
+    
+    //method
+    public Shelter
     
 }

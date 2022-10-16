@@ -11,7 +11,7 @@ public class ShelterList<T> {
     numElements = 0;
   }
 
-  public Node<T> addLast(T data) {
+  public void addLast(T data) {
     Node<T> node = new Node<>(data);
     Node<T> temp = head;
     
@@ -77,7 +77,7 @@ public class ShelterList<T> {
     
     numElements--;
   }
-  
+
   
 
   public static class Node<E> {

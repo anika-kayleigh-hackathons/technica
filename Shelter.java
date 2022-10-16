@@ -26,6 +26,10 @@ public class Shelter extends ShelterList<Shelter>{
         return maxCapacity;
     }
     
+    public Location getLocation() {
+        return location;
+    }
+    
     
     //setters
     public void setName(String name) {
@@ -40,7 +44,5 @@ public class Shelter extends ShelterList<Shelter>{
         this.location = new Location(lat, lon);
     }
     
-    //method
-    public Shelter
     
 }

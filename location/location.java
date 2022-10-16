@@ -21,4 +21,11 @@ public class Location {
         return bounds;
     }
     
+    public int getLat() {
+        return lat;
+    }
+    
+    public int getLon() {
+        return lon;
+    }
 }

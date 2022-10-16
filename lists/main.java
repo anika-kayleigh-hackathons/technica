@@ -27,10 +27,26 @@ public class main {
         
     }
     
-    public Shelter[] findAvailable() {
-        for (int i = 0; i < )
+    public Shelter[] findAvailable(ShelterList shelterList, Shelter userShelter, int dist) {
+        Shelter[] available;
+        
+        Location userLocation = userShelter.getLocation();
+        int[][] bounds = userLocation.getBounds(dist);
+        for (int i = 0; i < shelterList.length(); i++) {
+            Shelter currShelter = shelterList.get(i);
+            Location currLocation = currShelter.getLocation();
+            
+            if (inBounds(bounds, currLocation)) {
+                available.append(currShelter);
+            }
+        }
+        
+        return available;
     }
     
-
+    private boolean inBounds(int[][] target, Location shelterLocation) {
+        int shelterLat = shelterLocation.
+    }
+    
 }
 
